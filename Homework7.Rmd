@@ -9,33 +9,48 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Load libraries to read all files
+#### Load libraries to read all files
 ```{r message=FALSE, results='hide'}
 #install.packages("rjson") #install package if it is not already on your machine
 #install.packages("jsonlite") #install package if it is not already on your machine
 library(rjson)
 library(jsonlite)
 library(xml2)
+library(tidyverse)
 ```
 
-Pick 3 facorite Books and load into separate data frames
+##### Pick 3 favorite Books and load book information into separate data frames
+Book #1 - an XML file
 ```{r}
-#Book #1 in an XML file
+#Load the XML file Book1.xml
 book1 <- read_xml("Book1.xml")
 book1
+#Convert book1 data to a dataframe using tibble
+book1.df <- tibble(book1)
+book1.df
 ```
 
-Book #2
+Book #2 - a HTML file
 ```{r}
-#Book #2
+#Load HTML file Book2.html
 book2 <- read_html("Book2.html")
 book2
+#Convert book2 data to a dataframe using tibble
+book2.df <- tibble(book2)
+book2.df
 ```
 
-Book #3
+Book #3 - a Json file
 ```{r}
-#Book #3
+#Load Json file Book3.json
 book3 <- read_json("Book3.json")
 book3
+#Convert book3 to a dataframe using tibble
+book3.df <- tibble(book3)
+book3.df
 ```
 
+#### Findings:
+R reads and loads each file differently although the data is very similar. The XML file loads a separate line for each part of the file (title, author, pages, and so on). The HTML file loads all data to just one line and does not recognize each part of the file as it's own section. And the Json file seems to be the most organized because there is clear separation between each piece of information in the file. 
+
+Loading to a dataframe is the most difficult part. You cannot just load the information without any sort of manipulation. The dataframe, created using tibble, does not recognize the text for the book information, but instead loads attributes such as "char [1]", "named list", and "externalptr".
