@@ -16,7 +16,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(rjson)
 library(jsonlite)
 library(xml2)
-library(methods)
 ```
 
 Pick 3 facorite Books and load into separate data frames
