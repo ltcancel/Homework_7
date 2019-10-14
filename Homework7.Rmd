@@ -9,7 +9,34 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+### Load libraries to read all files
+```{r message=FALSE, results='hide'}
+#install.packages("rjson") #install package if it is not already on your machine
+#install.packages("jsonlite") #install package if it is not already on your machine
+library(rjson)
+library(jsonlite)
+library(xml2)
+library(methods)
+```
 
+Pick 3 facorite Books and load into separate data frames
+```{r}
+#Book #1 in an XML file
+book1 <- read_xml("Book1.xml")
+book1
+```
+
+Book #2
+```{r}
+#Book #2
+book2 <- read_html("Book2.html")
+book2
+```
+
+Book #3
+```{r}
+#Book #3
+book3 <- read_json("Book3.json")
+book3
 ```
 
